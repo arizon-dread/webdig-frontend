@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LookupResponse } from '../models/lookup-response';
+import { LookupService } from '../services/lookup.service';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -23,7 +24,7 @@ export class DnsLookupComponent {
 
   resp: LookupResponse | undefined;
   
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private lookupSvc: LookupService) {}
 
   lookupDNS() {
     if (this.form.valid) {
@@ -31,7 +32,7 @@ export class DnsLookupComponent {
 
       const searchValue = this.form.controls['searchField'].value
       //Lookup using the client's host machine's configured dns server:
-      
+
 
     }
     

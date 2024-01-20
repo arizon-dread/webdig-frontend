@@ -3,5 +3,4 @@ export interface LookupResponse {
     internalIPAddresses?: string[]
     externalIPAddresses?: string[]
     err?: string
-    machineLookupResponse?: string
 }

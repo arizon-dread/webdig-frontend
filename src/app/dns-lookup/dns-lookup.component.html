@@ -6,9 +6,29 @@
             <div class="col-md-3"><button class="btn btn-success" role="submit">Search</button></div>
         </form>
         <div class="row mt-4 mb-4"></div>
-        <div *ngIf="resp?.machineLookupResponse" class="row">
-            <div class="col-md-4">Your local machine's lookup:</div>
-            <div class="col-md-4">{{resp?.machineLookupResponse}}</div>
+        <div *ngIf="resp?.internalIPAddresses" class="row">
+            <div class="col-md-4">Internal DNS Lookup:</div>
+            <div class="col-md-4">
+                @for (intIp of resp?.internalIPAddresses; track intIp) {
+                    <div @for="">{{intIp}}</div>&nbsp;
+                }
+            </div>
+        </div>
+        <div *ngIf="resp?.externalIPAddresses" class="row">
+            <div class="col-md-4">External DNS Lookup:</div>
+            <div class="col-md-4">
+                @for (extIp of resp?.externalIPAddresses; track extIp) {
+                    <div @for="">{{extIp}}</div>&nbsp;
+                }
+            </div>
+        </div>
+        <div *ngIf="resp?.dnsNames" class="row">
+            <div class="col-md-4">Reverse Lookup DNS names:</div>
+            <div class="col-md-4">
+                @for (dnsName of resp?.dnsNames; track dnsName) {
+                    <div @for="">{{dnsName}}</div>&nbsp;
+                }
+            </div>
         </div>
     </div>
 
