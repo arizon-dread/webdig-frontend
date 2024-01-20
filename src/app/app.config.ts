@@ -6,7 +6,8 @@ import { routes } from './app.routes';
 import { ConfigService } from './services/config.service'
 import { Config } from './models/config';
 import { provideClientHydration } from '@angular/platform-browser';
-import { HttpClient, provideHttpClient } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withFetch } from '@angular/common/http';
+import { provideToastr } from 'ngx-toastr';
 
 export function appConfigInit(appConfigService: ConfigService): () => Observable<any> {
   return () => 
@@ -18,7 +19,7 @@ export function appConfigInit(appConfigService: ConfigService): () => Observable
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideHttpClient(),
+    provideHttpClient(withFetch()),
     provideRouter(routes),
     {
       provide: APP_INITIALIZER,
@@ -26,6 +27,7 @@ export const appConfig: ApplicationConfig = {
       multi: true,
       deps: [ConfigService, HttpClient]
     },
+    provideToastr(),
     provideClientHydration(),
     
   ]

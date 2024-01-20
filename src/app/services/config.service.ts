@@ -13,7 +13,6 @@ export class ConfigService {
   public static config: Config = {apiBaseUrl: ""};
 
   loadConfig(): Observable<Config> {
-    console.log("loading config..");
     
     
     return this.http.get<Config>("/config/config.json");

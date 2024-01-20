@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { LookupResponse } from '../models/lookup-response';
 import { LookupService } from '../services/lookup.service';
-import { FormsModule, ReactiveFormsModule, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { LookupRequest } from '../models/lookup-request';
+import { ErrorHandlerService } from '../services/error-handler.service';
+import { ToastrType } from '../enums/toastr-type';
 
 @Component({
   selector: 'app-dns-lookup',
@@ -17,6 +20,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './dns-lookup.component.css'
 })
 export class DnsLookupComponent {
+  destroyRef = inject(DestroyRef);
 
   form = this.fb.group({
     searchField: ['', Validators.required]
@@ -24,13 +28,26 @@ export class DnsLookupComponent {
 
   resp: LookupResponse | undefined;
   
-  constructor(private fb: FormBuilder, private lookupSvc: LookupService) {}
+  constructor(private fb: FormBuilder, private lookupSvc: LookupService, private errHandler: ErrorHandlerService) {}
 
   lookupDNS() {
     if (this.form.valid) {
       this.resp = {};
 
-      const searchValue = this.form.controls['searchField'].value
+      const req: LookupRequest = {
+        host: this.form.controls['searchField'].value ?? ""
+      };
+      this.lookupSvc.lookup(req).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
+        next: (data: LookupResponse) => {
+          if (data) {
+          this.resp = data;
+          }
+        },
+        error: (err: Error) => {
+          this.errHandler.displayMsgToUser("Unable to get proper lookup from backend", ToastrType.error);
+          console.log(err);
+        }
+      })
       //Lookup using the client's host machine's configured dns server:
 
 
@@ -39,3 +56,7 @@ export class DnsLookupComponent {
   }
 
 }
+function takeUntilDestroyed(destroyRef: DestroyRef): import("rxjs").OperatorFunction<LookupResponse, unknown> {
+  throw new Error('Function not implemented.');
+}
+
