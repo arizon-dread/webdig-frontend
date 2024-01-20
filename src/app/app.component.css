@@ -1,0 +1,16 @@
+.logo {
+    max-height: 2.5rem;
+    color: black;
+    stroke: black;
+}
+
+h2 {
+    word-wrap: none;
+}
+
+
+@media only screen and (max-width: 64em) {
+    h2 {
+        font-size: medium;
+    }
+}
