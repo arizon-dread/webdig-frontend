@@ -1,14 +1,14 @@
 <section class="row">
     <div class="col-md-12">
-        <div class="row">
+        <form [formGroup]="form" (ngSubmit)="lookupDNS()" class="row">
             <div class="col-md-3 pt-2">Lookup DNS or IP</div>
-            <div class="col-md-6"><input type="text" class="form-control" placeholder="eg: 192.168.1.1 or example.com"></div>
-            <div class="col-md-3"><button class="btn btn-success">Search</button></div>
-        </div>
+            <div class="col-md-6"><input type="text" formControlName="searchField" class="form-control" placeholder="eg: 192.168.1.1 or example.com"></div>
+            <div class="col-md-3"><button class="btn btn-success" role="submit">Search</button></div>
+        </form>
         <div class="row mt-4 mb-4"></div>
-        <div class="row">
-            <div class="col-md-4">result:</div>
-            <div class="col-md-4">bear</div>
+        <div *ngIf="resp?.machineLookupResponse" class="row">
+            <div class="col-md-4">Your local machine's lookup:</div>
+            <div class="col-md-4">{{resp?.machineLookupResponse}}</div>
         </div>
     </div>
 
