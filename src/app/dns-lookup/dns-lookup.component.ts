@@ -32,7 +32,6 @@ export class DnsLookupComponent {
 
   lookupDNS() {
     if (this.form.valid) {
-      this.resp = {};
 
       const req: LookupRequest = {
         host: this.form.controls['searchField'].value ?? ""
@@ -40,7 +39,7 @@ export class DnsLookupComponent {
       this.lookupSvc.lookup(req).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
         next: (data: LookupResponse) => {
           if (data) {
-          this.resp = data;
+            this.resp = data;
           }
         },
         error: (err: Error) => {
