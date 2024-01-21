@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { LookupRequest } from '../models/lookup-request';
 import { ErrorHandlerService } from '../services/error-handler.service';
 import { ToastrType } from '../enums/toastr-type';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-dns-lookup',
@@ -47,15 +48,11 @@ export class DnsLookupComponent {
           console.log(err);
         }
       })
-      //Lookup using the client's host machine's configured dns server:
-
+     
 
     }
     
   }
 
-}
-function takeUntilDestroyed(destroyRef: DestroyRef): import("rxjs").OperatorFunction<LookupResponse, unknown> {
-  throw new Error('Function not implemented.');
 }
 
