@@ -16,7 +16,7 @@ export class LookupService {
   constructor(private http: HttpClient, private errHandler: ErrorHandlerService) { }
 
   lookup(host: LookupRequest) : Observable<LookupResponse> {
-    return this.http.post<LookupResponse>(ConfigService.config.apiBaseUrl + "/lookup", host)
+    return this.http.post<LookupResponse>(ConfigService.config.apiBaseUrl + "/dig", host)
         .pipe(
           catchError(this.errHandler.handleError("lookup", this.resp, "Unable to lookup host"))
         )
