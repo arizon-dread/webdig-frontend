@@ -1,12 +1,11 @@
-import { Component, DestroyRef, inject } from '@angular/core';
-import { LookupResponse } from '../models/lookup-response';
-import { LookupService } from '../services/lookup.service';
-import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { LookupRequest } from '../models/lookup-request';
-import { ErrorHandlerService } from '../services/error-handler.service';
-import { ToastrType } from '../enums/toastr-type';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { LookupRequest } from '../models/lookup-request';
+import { LookupResponse } from '../models/lookup-response';
+import { ErrorHandlerService } from '../services/error-handler.service';
+import { LookupService } from '../services/lookup.service';
 
 @Component({
   selector: 'app-dns-lookup',
@@ -28,7 +27,7 @@ export class DnsLookupComponent {
   });
 
   resp: LookupResponse | undefined;
-  
+
   constructor(private fb: FormBuilder, private lookupSvc: LookupService, private errHandler: ErrorHandlerService) {}
 
   lookupDNS() {
@@ -44,14 +43,14 @@ export class DnsLookupComponent {
           }
         },
         error: (err: Error) => {
-          this.errHandler.displayMsgToUser("Unable to get proper lookup from backend", ToastrType.error);
+          //this.errHandler.displayMsgToUser("Unable to get proper lookup from backend", ToastrType.error);
           console.log(err);
         }
       })
-     
+
 
     }
-    
+
   }
 
 }

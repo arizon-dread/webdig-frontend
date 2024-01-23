@@ -1,8 +1,8 @@
-import { ErrorHandler, Injectable } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ToastrType } from '../enums/toastr-type';
-import { Observable, throwError } from 'rxjs';
+import { ErrorHandler, Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Observable, throwError } from 'rxjs';
+import { ToastrType } from '../enums/toastr-type';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,13 +15,13 @@ export class ErrorHandlerService implements ErrorHandler {
 
       //Do a bunch of logic to display error to user.
       if (err.status === 400) {
-        this.displayMsgToUser("You did something the backend didn't like: " + err.message, ToastrType.error);
+        this.displayMsgToUser("Bad input or empty dns record: " + err.message, ToastrType.warning);
       } else if (err.status === 401) {
         this.displayMsgToUser("You don't seem to be logged in.", ToastrType.error);
         //this.router.navigate("/login");
       } else if (err.status === 500) {
         this.displayMsgToUser(err.message + " " + err.statusText, ToastrType.error);
-      } 
+      }
       return throwError(()  => err);
     }
   }

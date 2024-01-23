@@ -1,35 +1,40 @@
 <section class="row">
-    <div class="col-md-12">
-        <form [formGroup]="form" (ngSubmit)="lookupDNS()" class="row">
-            <div class="col-md-3 pt-2">Lookup DNS or IP</div>
-            <div class="col-md-6"><input type="text" formControlName="searchField" class="form-control" placeholder="eg: 192.168.1.1 or example.com"></div>
-            <div class="col-md-3"><button class="btn btn-success" role="submit">Search</button></div>
-        </form>
-        <div class="row mt-4 mb-4"></div>
-        <div *ngIf="resp?.internalIPAddresses" class="row">
-            <div class="col-md-4">Internal DNS Lookup:</div>
-            <div class="col-md-4">
-                @for (intIp of resp?.internalIPAddresses; track intIp) {
-                    <div @for="">{{intIp}}</div>&nbsp;
-                }
-            </div>
-        </div>
-        <div *ngIf="resp?.externalIPAddresses" class="row">
-            <div class="col-md-4">External DNS Lookup:</div>
-            <div class="col-md-4">
-                @for (extIp of resp?.externalIPAddresses; track extIp) {
-                    <div @for="">{{extIp}}</div>&nbsp;
-                }
-            </div>
-        </div>
-        <div *ngIf="resp?.dnsNames" class="row">
-            <div class="col-md-4">Reverse Lookup DNS names:</div>
-            <div class="col-md-4">
-                @for (dnsName of resp?.dnsNames; track dnsName) {
-                    <div @for="">{{dnsName}}</div>&nbsp;
-                }
-            </div>
-        </div>
+  <div class="col-md-12">
+    <form [formGroup]="form" (ngSubmit)="lookupDNS()" class="row">
+      <div class="col-md-2 offset-md-2 pt-2">Lookup DNS or IP</div>
+      <div class="col-md-6"><input type="text" formControlName="searchField" class="form-control"
+          placeholder="eg: 192.168.1.1 or example.com"></div>
+      <div class="col-md-1"><button class="btn btn-success" role="submit">Search</button></div>
+    </form>
+  </div>
+</section>
+<section>
+  <div class="row mt-4 mb-4"></div>
+  <div *ngIf="this.resp?.InternalIPAddresses" class="row">
+    <hr />
+    <div class="offset-md-2 col-md-4">Internal DNS Lookup:</div>
+    <div class="col-md-4">
+      @for (intIp of resp?.InternalIPAddresses; track intIp) {
+      <div>{{intIp}}</div>&nbsp;
+      }
     </div>
-
+  </div>
+  <div *ngIf="resp?.ExternalIPAddresses" class="row">
+    <hr />
+    <div class="offset-md-2 col-md-4">External DNS Lookup:</div>
+    <div class="col-md-4">
+      @for (extIp of resp?.ExternalIPAddresses; track extIp) {
+      <div>{{extIp}}</div>&nbsp;
+      }
+    </div>
+  </div>
+  <div *ngIf="resp?.DnsNames" class="row">
+    <hr />
+    <div class="offset-md-2 col-md-4">Reverse Lookup DNS names:</div>
+    <div class="col-md-4">
+      @for (dnsName of resp?.DnsNames; track dnsName) {
+      <div>{{dnsName}}</div>&nbsp;
+      }
+    </div>
+  </div>
 </section>
