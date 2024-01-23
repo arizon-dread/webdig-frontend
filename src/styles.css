@@ -8,6 +8,9 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+  .nowrap {
+    white-space: nowrap;
+  }
 
   h1,
   h2,
@@ -110,9 +113,13 @@
 
   /* Responsive Styles */
   @media screen and (max-width: 767px) {
-  
+    .hide-small {
+      display: none;
+    }
   }
 
   @media screen and (max-width: 575px) {
-
+    .hide-small {
+      display: none;
+    }
   }

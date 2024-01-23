@@ -32,7 +32,7 @@ export class DnsLookupComponent {
 
   lookupDNS() {
     if (this.form.valid) {
-
+      this.resp = undefined;
       const req: LookupRequest = {
         host: this.form.controls['searchField'].value ?? ""
       };

@@ -8,18 +8,18 @@
     </form>
   </div>
 </section>
-<section>
+<section class="monospace">
   <div class="row mt-4 mb-4"></div>
-  <div *ngIf="this.resp?.InternalIPAddresses" class="row">
+  <div *ngIf="this.resp?.InternalIPAddresses?.length" class="row">
     <hr />
     <div class="offset-md-2 col-md-4">Internal DNS Lookup:</div>
     <div class="col-md-4">
       @for (intIp of resp?.InternalIPAddresses; track intIp) {
-      <div>{{intIp}}</div>&nbsp;
+      <div>{{intIp}}</div>
       }
     </div>
   </div>
-  <div *ngIf="resp?.ExternalIPAddresses" class="row">
+  <div *ngIf="resp?.ExternalIPAddresses?.length" class="row">
     <hr />
     <div class="offset-md-2 col-md-4">External DNS Lookup:</div>
     <div class="col-md-4">
@@ -28,7 +28,7 @@
       }
     </div>
   </div>
-  <div *ngIf="resp?.DnsNames" class="row">
+  <div *ngIf="resp?.DnsNames?.length" class="row">
     <hr />
     <div class="offset-md-2 col-md-4">Reverse Lookup DNS names:</div>
     <div class="col-md-4">
