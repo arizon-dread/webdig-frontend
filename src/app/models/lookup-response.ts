@@ -1,6 +1,6 @@
 export interface LookupResponse {
-    DnsNames?: string[]
-    InternalIPAddresses?: string[]
-    ExternalIPAddresses?: string[]
-    Err?: string
+    dnsNames?: string[]
+    internalIPAddresses?: string[]
+    externalIPAddresses?: string[]
+    error?: string
 }

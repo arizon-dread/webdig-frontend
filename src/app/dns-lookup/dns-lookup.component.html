@@ -8,32 +8,32 @@
     </form>
   </div>
 </section>
-<section class="monospace">
+<section>
   <div class="row mt-4 mb-4"></div>
-  <div *ngIf="this.resp?.InternalIPAddresses?.length" class="row">
+  <div *ngIf="this.resp?.internalIPAddresses?.length" class="row pb-4">
     <hr />
     <div class="offset-md-2 col-md-4">Internal DNS Lookup:</div>
     <div class="col-md-4">
-      @for (intIp of resp?.InternalIPAddresses; track intIp) {
-      <div>{{intIp}}</div>
+      @for (intIp of resp?.internalIPAddresses; track intIp) {
+      <div class="monospace">{{intIp}}</div>
       }
     </div>
   </div>
-  <div *ngIf="resp?.ExternalIPAddresses?.length" class="row">
+  <div *ngIf="resp?.externalIPAddresses?.length" class="row pb-4">
     <hr />
     <div class="offset-md-2 col-md-4">External DNS Lookup:</div>
     <div class="col-md-4">
-      @for (extIp of resp?.ExternalIPAddresses; track extIp) {
-      <div>{{extIp}}</div>&nbsp;
+      @for (extIp of resp?.externalIPAddresses; track extIp) {
+      <div class="monospace">{{extIp}}</div>&nbsp;
       }
     </div>
   </div>
-  <div *ngIf="resp?.DnsNames?.length" class="row">
+  <div *ngIf="resp?.dnsNames?.length" class="row pb-4">
     <hr />
     <div class="offset-md-2 col-md-4">Reverse Lookup DNS names:</div>
     <div class="col-md-4">
-      @for (dnsName of resp?.DnsNames; track dnsName) {
-      <div>{{dnsName}}</div>&nbsp;
+      @for (dnsName of resp?.dnsNames; track dnsName) {
+      <div class="monospace">{{dnsName}}</div>&nbsp;
       }
     </div>
   </div>

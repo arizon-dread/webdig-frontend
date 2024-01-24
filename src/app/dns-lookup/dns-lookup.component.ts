@@ -33,6 +33,7 @@ export class DnsLookupComponent {
   lookupDNS() {
     if (this.form.valid) {
       this.resp = undefined;
+      this.form.controls['searchField'].setValue(this.form.controls['searchField'].value?.trim() ?? "")
       const req: LookupRequest = {
         host: this.form.controls['searchField'].value ?? ""
       };
@@ -46,7 +47,7 @@ export class DnsLookupComponent {
           //this.errHandler.displayMsgToUser("Unable to get proper lookup from backend", ToastrType.error);
           console.log(err);
         }
-      })
+      });
 
 
     }

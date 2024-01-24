@@ -21,6 +21,8 @@ export class ErrorHandlerService implements ErrorHandler {
         //this.router.navigate("/login");
       } else if (err.status === 500) {
         this.displayMsgToUser(err.message + " " + err.statusText, ToastrType.error);
+      } else if (err.status === 404) {
+        this.displayMsgToUser("Not found", ToastrType.info);
       }
       return throwError(()  => err);
     }
