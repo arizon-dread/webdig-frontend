@@ -4,7 +4,14 @@
       <div class="col-md-2 offset-md-2 pt-2">Lookup DNS or IP</div>
       <div class="col-md-6"><input type="text" formControlName="searchField" class="form-control"
           placeholder="eg: 192.168.1.1 or example.com"></div>
-      <div class="col-md-1"><button class="btn btn-success" role="submit">Search</button></div>
+      <div class="col-md-1"><button class="btn btn-primary" role="submit">Search</button></div>
+      <div class="col-md-1 ps-2">
+        @if (searching) {
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        }
+      </div>
     </form>
   </div>
 </section>
@@ -24,7 +31,8 @@
     <div class="offset-md-2 col-md-4">External DNS Lookup:</div>
     <div class="col-md-4">
       @for (extIp of resp?.externalIPAddresses; track extIp) {
-      <div class="monospace">{{extIp}}</div>&nbsp;
+      <div class="monospace">{{extIp}}&nbsp;<button class="btn btn-primary" (click)="doReverseLookup(extIp)">Reverse
+          lookup</button></div>&nbsp;
       }
     </div>
   </div>
