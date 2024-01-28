@@ -17,7 +17,8 @@
 </section>
 <section>
   <div class="row mt-4 mb-4"></div>
-  <div *ngIf="this.resp?.internalIPAddresses?.length" class="row pb-4">
+  @if(this.resp?.internalIPAddresses?.length) {
+  <div class="row pb-4">
     <hr />
     <div class="offset-md-2 col-md-4">Internal DNS Lookup:</div>
     <div class="col-md-4">
@@ -26,17 +27,21 @@
       }
     </div>
   </div>
-  <div *ngIf="resp?.externalIPAddresses?.length" class="row pb-4">
+  }
+  @if(resp?.externalIPAddresses?.length) {
+  <div class="row pb-4">
     <hr />
     <div class="offset-md-2 col-md-4">External DNS Lookup:</div>
     <div class="col-md-4">
       @for (extIp of resp?.externalIPAddresses; track extIp) {
-      <div class="monospace">{{extIp}}&nbsp;<button class="btn btn-primary" (click)="doReverseLookup(extIp)">Reverse
+      <div class="monospace">{{extIp}}&nbsp;<button class="btn btn-primary non-mono" (click)="doReverseLookup(extIp)">Reverse
           lookup</button></div>&nbsp;
       }
     </div>
   </div>
-  <div *ngIf="resp?.dnsNames?.length" class="row pb-4">
+  }
+  @if(resp?.dnsNames?.length) {
+  <div class="row pb-4">
     <hr />
     <div class="offset-md-2 col-md-4">Reverse Lookup DNS names:</div>
     <div class="col-md-4">
@@ -45,4 +50,5 @@
       }
     </div>
   </div>
+  }
 </section>
