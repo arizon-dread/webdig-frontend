@@ -47,7 +47,8 @@
     <div class="offset-md-2 col-md-4">Reverse Lookup DNS names:</div>
     <div class="col-md-4">
       @for (dnsName of resp?.dnsNames; track dnsName) {
-      <div class="monospace">{{dnsName}}</div>&nbsp;
+      <div class="monospace">{{dnsName}}&nbsp;<button class="btn btn-primary non-mono" (click)="doReverseLookup(dnsName)">DNS
+        lookup</button></div>&nbsp;
       }
     </div>
   </div>
