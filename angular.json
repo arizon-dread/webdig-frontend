@@ -50,7 +50,14 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "assets": [
+                {
+                  "glob": "*.json",
+                  "input": "src/config",
+                  "output": "/config"
+                }
+              ]
             },
             "development": {
               "optimization": false,

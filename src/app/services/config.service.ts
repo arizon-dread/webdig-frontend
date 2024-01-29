@@ -15,7 +15,7 @@ export class ConfigService {
   loadConfig(): Observable<Config> {
 
 
-    return this.http.get<Config>("assets/config/config.json");
+    return this.http.get<Config>("config/config.json");
 
   }
 }
