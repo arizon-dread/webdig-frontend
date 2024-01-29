@@ -23,7 +23,8 @@
     <div class="offset-md-2 col-md-4">Internal DNS Lookup:</div>
     <div class="col-md-4">
       @for (intIp of resp?.internalIPAddresses; track intIp) {
-      <div class="monospace">{{intIp}}</div>
+      <div class="monospace">{{intIp}}&nbsp;<button class="btn btn-primary non-mono" (click)="doReverseLookup(intIp)">Reverse
+        lookup</button></div>
       }
     </div>
   </div>
