@@ -30,11 +30,7 @@
               "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [],
-            "server": "src/main.server.ts",
-            "prerender": true,
-            "ssr": {
-              "entry": "server.ts"
-            }
+            "ssr": false
           },
           "configurations": {
             "production": {
@@ -50,14 +46,7 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all",
-              "assets": [
-                {
-                  "glob": "*.json",
-                  "input": "src/config",
-                  "output": "/config"
-                }
-              ]
+              "outputHashing": "all"
             },
             "development": {
               "optimization": false,
