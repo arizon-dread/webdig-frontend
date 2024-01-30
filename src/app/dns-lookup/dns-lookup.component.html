@@ -23,8 +23,8 @@
     <div class="offset-md-2 col-md-4">Internal DNS Lookup:</div>
     <div class="col-md-4">
       @for (intIp of resp?.internalIPAddresses; track intIp) {
-      <div class="row">
-        <div class="monospace col-md-8 pb-2">{{intIp}}&nbsp;</div>
+      <div class="row pb-2">
+        <div class="monospace col-md-8">{{intIp}}&nbsp;</div>
         <div class="col-md-4 non-mono"><button class="btn btn-primary nowrap" (click)="doReverseLookup(intIp)">Reverse
             lookup</button></div>
       </div>
@@ -38,8 +38,8 @@
     <div class="offset-md-2 col-md-4">External DNS Lookup:</div>
     <div class="col-md-4">
       @for (extIp of resp?.externalIPAddresses; track extIp) {
-      <div class="row">
-        <div class="monospace col-md-8 pb-2">{{extIp}}</div><div class="col-md-4 non-mono"><button
+      <div class="row pb-2">
+        <div class="monospace col-md-8">{{extIp}}</div><div class="col-md-4 non-mono"><button
             class="btn btn-primary nowrap" (click)="doReverseLookup(extIp)">Reverse
             lookup</button></div>
       </div>
@@ -53,8 +53,8 @@
     <div class="offset-md-2 col-md-4">Reverse Lookup DNS names:</div>
     <div class="col-md-4">
       @for (dnsName of resp?.dnsNames; track dnsName) {
-      <div class="row">
-        <div class="monospace col-md-8">{{dnsName}}</div><div class="col-md-4 non-mono pb-2"><button class="btn btn-primary nowrap"
+      <div class="row pb-2">
+        <div class="monospace col-md-8">{{dnsName}}</div><div class="col-md-4 non-mono"><button class="btn btn-primary nowrap"
             (click)="doReverseLookup(dnsName)">DNS
             lookup</button></div>
       </div>
