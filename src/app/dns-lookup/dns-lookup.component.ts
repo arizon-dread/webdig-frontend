@@ -30,6 +30,7 @@ export class DnsLookupComponent {
   resp: LookupResponse | undefined;
 
   constructor(private fb: FormBuilder, private lookupSvc: LookupService, private errHandler: ErrorHandlerService) {}
+
   doReverseLookup(ip: string) {
     this.form.controls["searchField"].setValue(ip);
     this.lookupDNS();

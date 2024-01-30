@@ -3,7 +3,7 @@
     <form [formGroup]="form" (ngSubmit)="lookupDNS()" class="row">
       <div class="col-md-2 offset-md-2 pt-2">Lookup DNS or IP</div>
       <div class="col-md-6"><input type="text" formControlName="searchField" class="form-control"
-          placeholder="eg: 192.168.1.1 or example.com"></div>
+          placeholder="eg: 192.168.1.1 or example.com" autofocus></div>
       <div class="col-md-1"><button class="btn btn-primary" role="submit">Search</button></div>
       <div class="col-md-1 ps-2">
         @if (searching) {
