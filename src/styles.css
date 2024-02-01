@@ -123,3 +123,15 @@
       display: none;
     }
   }
+@media print {
+  .hide-in-print {
+    display: none;
+  }
+  .form-control {
+    border: none;
+  }
+  h2 {
+    color: black;
+  }
+
+}
