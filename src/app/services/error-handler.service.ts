@@ -15,7 +15,7 @@ export class ErrorHandlerService implements ErrorHandler {
 
       //Do a bunch of logic to display error to user.
       if (err.status === 400) {
-        this.displayMsgToUser("Bad input or empty dns record: " + err.message, ToastrType.warning);
+        this.displayMsgToUser("Bad input " + err.message, ToastrType.warning);
       } else if (err.status === 401) {
         this.displayMsgToUser("You don't seem to be logged in.", ToastrType.error);
         //this.router.navigate("/login");

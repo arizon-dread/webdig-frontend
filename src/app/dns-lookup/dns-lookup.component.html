@@ -1,9 +1,9 @@
 <section class="row">
   <div class="col-md-12">
-    <form [formGroup]="form" (ngSubmit)="lookupDNS()" class="row">
+    <form [formGroup]="form" (ngSubmit)="lookupDNS()" novalidate class="row">
       <div class="col-md-2 offset-md-2 pt-2">Lookup DNS or IP</div>
       <div class="col-md-6"><input type="text" formControlName="searchField" class="form-control"
-          placeholder="eg: 192.168.1.1 or example.com" autofocus></div>
+          placeholder="e.g: 192.168.1.1 or example.com" (blur)="validate()" autofocus></div>
       <div class="col-md-1"><button class="btn btn-primary hide-in-print" role="submit">Search</button></div>
       <div class="col-md-1 ps-2">
         @if (searching) {
@@ -13,6 +13,12 @@
         }
       </div>
     </form>
+    <div class="row hide-in-print">
+      @if (displayValidationError && !form.controls['searchField'].valid && form.controls['searchField'].value != '') {
+        <div class="offset-md-4 col-md-6"><span class="text-danger" title="Fully Qualified Domain Name">Please enter a valid FQDN or IPv4 address.</span></div>
+      }
+      
+    </div>
   </div>
 </section>
 <section>
@@ -20,8 +26,8 @@
   @if(this.resp?.internalIPAddresses?.length) {
   <div class="row pb-4">
     <hr />
-    <div class="offset-md-2 col-md-4">Internal DNS Lookup:</div>
-    <div class="col-md-4">
+    <div class="offset-md-2 col-md-3">Internal DNS Lookup:</div>
+    <div class="col-md-7">
       @for (intIp of resp?.internalIPAddresses; track intIp) {
       <div class="row pb-2">
         <div class="monospace col-md-8">{{intIp}}&nbsp;</div>
@@ -35,8 +41,8 @@
   @if(resp?.externalIPAddresses?.length) {
   <div class="row pb-4">
     <hr />
-    <div class="offset-md-2 col-md-4">External DNS Lookup:</div>
-    <div class="col-md-4">
+    <div class="offset-md-2 col-md-3">External DNS Lookup:</div>
+    <div class="col-md-7">
       @for (extIp of resp?.externalIPAddresses; track extIp) {
       <div class="row pb-2">
         <div class="monospace col-md-8">{{extIp}}</div><div class="col-md-4 non-mono"><button
@@ -50,11 +56,11 @@
   @if(resp?.dnsNames?.length) {
   <div class="row pb-4">
     <hr />
-    <div class="offset-md-2 col-md-4">Reverse Lookup DNS names:</div>
-    <div class="col-md-4">
+    <div class="offset-md-2 col-md-3">Reverse Lookup DNS names:</div>
+    <div class="col-md-7">
       @for (dnsName of resp?.dnsNames; track dnsName) {
       <div class="row pb-2">
-        <div class="monospace col-md-8">{{dnsName}}</div><div class="col-md-4 non-mono hide-in-print"><button class="btn btn-primary nowrap"
+        <div class="monospace col-md-8 text-break">{{dnsName}}</div><div class="col-md-4 non-mono hide-in-print"><button class="btn btn-primary nowrap"
             (click)="doReverseLookup(dnsName)">DNS
             lookup</button></div>
       </div>

@@ -21,15 +21,16 @@ import { LookupService } from '../services/lookup.service';
 })
 export class DnsLookupComponent {
   destroyRef = inject(DestroyRef);
-
+  regex = /^(([A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9]\.)+([A-Za-z]{2,63}\.?))|((\d{1,3}\.){3}\d{1,3})$/;
   form = this.fb.group({
-    searchField: ['', Validators.required]
+    searchField: ['', Validators.compose([Validators.required, Validators.pattern(this.regex)])]
   });
   searching = false;
 
   resp: LookupResponse | undefined;
+  displayValidationError = false;
 
-  constructor(private fb: FormBuilder, private lookupSvc: LookupService, private errHandler: ErrorHandlerService) {}
+  constructor(private fb: FormBuilder, private lookupSvc: LookupService, private errHandler: ErrorHandlerService) { }
 
   doReverseLookup(ip: string) {
     this.form.controls["searchField"].setValue(ip);
@@ -57,10 +58,17 @@ export class DnsLookupComponent {
           this.searching = false;
         }
       });
-
-
+    } else {
+      this.displayValidationError = true;
     }
 
+  }
+  validate() {
+    if (this.form.valid) {
+      this.displayValidationError = false;
+    } else {
+      this.displayValidationError = true;
+    }
   }
 
 }
