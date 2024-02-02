@@ -21,7 +21,7 @@ import { LookupService } from '../services/lookup.service';
 })
 export class DnsLookupComponent {
   destroyRef = inject(DestroyRef);
-  regex = /^(([A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9]\.)+([A-Za-z]{2,63}\.?))|((\d{1,3}\.){3}\d{1,3})$/;
+  regex = /^(([A-ZÅÄÖa-zåäö0-9][A-ZÅÄÖa-zåäö0-9\-]*[A-ZÅÄÖa-zåöl0-9]\.)+([A-Za-z]{2,63}\.?))|((\d{1,3}\.){3}\d{1,3})$/;
   form = this.fb.group({
     searchField: ['', Validators.compose([Validators.required, Validators.pattern(this.regex)])]
   });
