@@ -6,6 +6,7 @@ import { LookupRequest } from '../models/lookup-request';
 import { LookupResponse } from '../models/lookup-response';
 import { ErrorHandlerService } from '../services/error-handler.service';
 import { LookupService } from '../services/lookup.service';
+import { DnsLookupResponseItemComponent } from '../dns-lookup-response-item/dns-lookup-response-item.component';
 
 @Component({
   selector: 'app-dns-lookup',
@@ -14,7 +15,7 @@ import { LookupService } from '../services/lookup.service';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-
+    DnsLookupResponseItemComponent
   ],
   templateUrl: './dns-lookup.component.html',
   styleUrl: './dns-lookup.component.css'

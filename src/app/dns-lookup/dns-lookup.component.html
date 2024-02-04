@@ -15,57 +15,15 @@
     </form>
     <div class="row hide-in-print">
       @if (displayValidationError && !form.controls['searchField'].valid && form.controls['searchField'].value != '') {
-        <div class="offset-md-4 col-md-6"><span class="text-danger" title="Fully Qualified Domain Name">Please enter a valid FQDN or IPv4 address.</span></div>
+      <div class="offset-md-4 col-md-6"><span class="text-danger" title="Fully Qualified Domain Name">Please enter a
+          valid FQDN or IPv4 address.</span></div>
       }
-      
+
     </div>
   </div>
 </section>
 <section>
-  <div class="row mt-4 mb-4"></div>
-  @if(this.resp?.internalIPAddresses?.length) {
-  <div class="row pb-4">
-    <hr />
-    <div class="offset-md-2 col-md-3">Internal DNS Lookup:</div>
-    <div class="col-md-7">
-      @for (intIp of resp?.internalIPAddresses; track intIp) {
-      <div class="row pb-2">
-        <div class="monospace col-md-8">{{intIp}}&nbsp;</div>
-        <div class="col-md-4 non-mono hide-in-print"><button class="btn btn-primary nowrap" (click)="doReverseLookup(intIp)">Reverse
-            lookup</button></div>
-      </div>
-      }
-    </div>
-  </div>
-  }
-  @if(resp?.externalIPAddresses?.length) {
-  <div class="row pb-4">
-    <hr />
-    <div class="offset-md-2 col-md-3">External DNS Lookup:</div>
-    <div class="col-md-7">
-      @for (extIp of resp?.externalIPAddresses; track extIp) {
-      <div class="row pb-2">
-        <div class="monospace col-md-8">{{extIp}}</div><div class="col-md-4 non-mono"><button
-            class="btn btn-primary nowrap hide-in-print" (click)="doReverseLookup(extIp)">Reverse
-            lookup</button></div>
-      </div>
-      }
-    </div>
-  </div>
-  }
-  @if(resp?.dnsNames?.length) {
-  <div class="row pb-4">
-    <hr />
-    <div class="offset-md-2 col-md-3">Reverse Lookup DNS names:</div>
-    <div class="col-md-7">
-      @for (dnsName of resp?.dnsNames; track dnsName) {
-      <div class="row pb-2">
-        <div class="monospace col-md-8 text-break">{{dnsName}}</div><div class="col-md-4 non-mono hide-in-print"><button class="btn btn-primary nowrap"
-            (click)="doReverseLookup(dnsName)">DNS
-            lookup</button></div>
-      </div>
-      }
-    </div>
-  </div>
+  @for (result of resp?.results; track result) {
+  <app-dns-lookup-response-item [result]="result" (emitLookupReq)="doReverseLookup($event)"></app-dns-lookup-response-item>
   }
 </section>

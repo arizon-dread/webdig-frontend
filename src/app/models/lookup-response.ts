@@ -1,6 +1,11 @@
-export interface LookupResponse {
+export interface Result {
+    name: string
     dnsNames?: string[]
-    internalIPAddresses?: string[]
-    externalIPAddresses?: string[]
+    ipAddresses?: string[]
     error?: string
+}
+
+export interface LookupResponse {
+    results: Result[]
+    error: string
 }

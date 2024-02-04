@@ -1,0 +1,33 @@
+<div class="row mt-4 mb-4"></div>
+@if(this.result?.ipAddresses?.length) {
+<div class="row pb-4">
+    <hr />
+    <div class="offset-md-2 col-md-3">{{result?.name}} DNS Lookup:</div>
+    <div class="col-md-7">
+        @for (intIp of result?.ipAddresses; track intIp) {
+        <div class="row pb-2">
+            <div class="monospace col-md-8">{{intIp}}&nbsp;</div>
+            <div class="col-md-4 non-mono hide-in-print"><button class="btn btn-primary nowrap"
+                    (click)="doReverseLookup(intIp)">Reverse
+                    lookup</button></div>
+        </div>
+        }
+    </div>
+</div>
+}
+@if(result?.dnsNames?.length) {
+<div class="row pb-4">
+    <hr />
+    <div class="offset-md-2 col-md-3">Reverse Lookup DNS names:</div>
+    <div class="col-md-7">
+        @for (dnsName of result?.dnsNames; track dnsName) {
+        <div class="row pb-2">
+            <div class="monospace col-md-8 text-break">{{dnsName}}</div>
+            <div class="col-md-4 non-mono hide-in-print"><button class="btn btn-primary nowrap"
+                    (click)="doReverseLookup(dnsName)">DNS
+                    lookup</button></div>
+        </div>
+        }
+    </div>
+</div>
+}
