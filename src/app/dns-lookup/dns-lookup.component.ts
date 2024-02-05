@@ -2,11 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component, DestroyRef, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { DnsLookupResponseItemComponent } from '../dns-lookup-response-item/dns-lookup-response-item.component';
 import { LookupRequest } from '../models/lookup-request';
 import { LookupResponse } from '../models/lookup-response';
 import { ErrorHandlerService } from '../services/error-handler.service';
 import { LookupService } from '../services/lookup.service';
-import { DnsLookupResponseItemComponent } from '../dns-lookup-response-item/dns-lookup-response-item.component';
 
 @Component({
   selector: 'app-dns-lookup',
@@ -22,7 +22,7 @@ import { DnsLookupResponseItemComponent } from '../dns-lookup-response-item/dns-
 })
 export class DnsLookupComponent {
   destroyRef = inject(DestroyRef);
-  regex = /^(([A-ZÅÄÖa-zåäö0-9][A-ZÅÄÖa-zåäö0-9\-]*[A-ZÅÄÖa-zåö0-9]\.)+([A-Za-z]{2,63}\.?))|((\d{1,3}\.){3}\d{1,3})$/;
+  regex = /^(([A-ZÅÄÖa-zåäö0-9][A-ZÅÄÖa-zåäö0-9\-]*[A-ZÅÄÖa-zåäö0-9]\.)+([A-Za-z]{2,63}\.?))|((\d{1,3}\.){3}\d{1,3})$/;
   form = this.fb.group({
     searchField: ['', Validators.compose([Validators.required, Validators.pattern(this.regex)])]
   });
