@@ -18,9 +18,6 @@ import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
     ReactiveFormsModule,
     DnsLookupResponseItemComponent
   ],
-  providers: [
-    //ActivatedRouteSnapshot
-  ],
   templateUrl: './dns-lookup.component.html',
   styleUrl: './dns-lookup.component.css'
 })
