@@ -7,7 +7,14 @@
 h2 {
     word-wrap: none;
 }
-
+.title-link {
+    color: white;
+}
+.title-link:hover {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    text-decoration: underline;
+}
 
 @media only screen and (max-width: 64em) {
     h2 {
