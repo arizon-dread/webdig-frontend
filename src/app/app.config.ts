@@ -28,7 +28,6 @@ export const appConfig: ApplicationConfig = {
       deps: [ConfigService, HttpClient]
     },
     provideToastr(),
-    provideClientHydration(),
     provideAnimations()
 
   ]
