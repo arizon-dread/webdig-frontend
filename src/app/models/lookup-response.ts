@@ -3,6 +3,7 @@ export interface Result {
     dnsNames?: string[]
     ipAddresses?: string[]
     error?: string
+    cnameFor?: string
 }
 
 export interface LookupResponse {
