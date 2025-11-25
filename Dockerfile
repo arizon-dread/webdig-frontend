@@ -10,6 +10,9 @@ RUN npm run ng build -- --configuration $configuration webdig-frontend
 FROM docker.io/regionorebrolan/openshift-nginx:v1.25.3
 #RUN mkdir -p /opt/app-root/src/ && chgrp -R 0 /opt/app-root/src/ && chmod g=u -R /opt/app-root/src/
 #COPY --from=build /app/dist/ /opt/app-root/src/
+ARG version='{"version": "vx.x.x"}'
+ENV VERSION=${version}
 COPY --from=build /app/dist/webdig-frontend /usr/share/nginx/html
+RUN echo $VERSION > /usr/share/nginx/html/version.json
 COPY --from=build /app/nginx/nginx.conf /etc/nginx/
 CMD ["nginx", "-g", "daemon off;"]
