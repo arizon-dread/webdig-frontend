@@ -13,7 +13,7 @@ export class VersionService {
   constructor(private http: HttpClient, private errHandler: ErrorHandlerService) {}
 
   getFrontendVersion(): Observable<Version> {
-    return this.http.get<Version>("/config/version");
+    return this.http.get<Version>("/version.json");
   }
   getBackendVersion(): Observable<Version> {
     return this.http.get<Version>(ConfigService.config.apiBaseUrl +'/version')
