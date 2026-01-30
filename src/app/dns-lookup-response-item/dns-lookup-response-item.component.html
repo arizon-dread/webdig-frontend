@@ -1,13 +1,13 @@
-@if(this.result?.ipAddresses?.length) {
+@if(this.result()?.ipAddresses?.length) {
 <div class="row pb-4">
     <hr />
-    <div class="offset-md-2 col-md-3 mt-2">{{result?.name}} DNS Lookup:</div>
+    <div class="offset-md-2 col-md-3 mt-2">{{result()?.name}} DNS Lookup:</div>
     <div class="col-md-7">
-        @for (intIp of result?.ipAddresses; track intIp) {
+        @for (intIp of result()?.ipAddresses; track intIp) {
         <div class="row pb-2">
-            @if(result?.cnameFor) {
+            @if(result()?.cnameFor) {
             <div class="monospace col-md-3 mt-2">{{intIp}}&nbsp;</div>
-            <div class="monospace col-md-4">CNAME for: {{result?.cnameFor}}</div>
+            <div class="monospace col-md-4">CNAME for: {{result()?.cnameFor}}</div>
             } @else {
             <div class="monospace col-md-5 mt-2">{{intIp}}&nbsp;</div>
             }
@@ -20,12 +20,12 @@
     </div>
 </div>
 }
-@if(result?.dnsNames?.length) {
+@if(result()?.dnsNames?.length) {
 <div class="row pb-4">
     <hr />
-    <div class="offset-md-2 col-md-3 pt-1">{{result?.name}} Reverse Lookup DNS names:</div>
+    <div class="offset-md-2 col-md-3 pt-1">{{result()?.name}} Reverse Lookup DNS names:</div>
     <div class="col-md-7">
-        @for (dnsName of result?.dnsNames; track dnsName) {
+        @for (dnsName of result()?.dnsNames; track dnsName) {
         <div class="row pb-2">
             <div class="monospace col-md-8 text-break pt-2">{{dnsName}}</div>
             <div class="col-md-4 non-mono hide-in-print"><button class="btn btn-primary nowrap"

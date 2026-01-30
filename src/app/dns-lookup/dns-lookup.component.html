@@ -29,7 +29,7 @@
   </div>
 </section>
 <section>
-  @for (result of resp?.results; track result) {
+  @for (result of resp()?.results; track result.name) {
   <app-dns-lookup-response-item [result]="result" (emitLookupReq)="doReverseLookup($event)"></app-dns-lookup-response-item>
   }
 </section>

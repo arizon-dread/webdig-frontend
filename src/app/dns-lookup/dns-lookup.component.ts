@@ -1,5 +1,5 @@
 import { CommonModule, Location } from '@angular/common';
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
@@ -31,10 +31,15 @@ export class DnsLookupComponent implements OnInit {
   searching = false;
   routeSnapShot: ActivatedRouteSnapshot | undefined;
 
-  resp: LookupResponse | undefined;
+  resp = signal<LookupResponse | undefined>(undefined);
   displayValidationError = false;
 
-  constructor(private fb: FormBuilder, private lookupSvc: LookupService, private errHandler: ErrorHandlerService, private route: ActivatedRoute, private location: Location) {
+  constructor(private fb: FormBuilder, 
+              private lookupSvc: LookupService, 
+              private cdr: ChangeDetectorRef,
+              private errHandler: ErrorHandlerService, 
+              private route: ActivatedRoute, 
+              private location: Location) {
     this.routeSnapShot = route.snapshot;
   }
 
@@ -57,7 +62,7 @@ export class DnsLookupComponent implements OnInit {
   lookupDNS() {
     if (this.form.valid) {
       localStorage.setItem("cname", this.form.controls.cname.value?.toString() ?? "false");
-      this.resp = undefined;
+      this.resp.set(undefined);
       this.searching = true;
       let value = this.form.controls['searchField'].value?.trim() ?? "";
       if (value.endsWith(".")) {
@@ -72,7 +77,7 @@ export class DnsLookupComponent implements OnInit {
       this.lookupSvc.lookup(req).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
         next: (data: LookupResponse) => {
           if (data) {
-            this.resp = data;
+            this.resp.set(data);
           }
           this.searching = false;
         },

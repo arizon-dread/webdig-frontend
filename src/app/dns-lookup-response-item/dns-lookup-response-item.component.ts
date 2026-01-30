@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, input, Input, Output } from '@angular/core';
 import { Result } from '../models/lookup-response';
 
 @Component({
@@ -10,7 +10,7 @@ import { Result } from '../models/lookup-response';
 })
 export class DnsLookupResponseItemComponent {
 
-  @Input() result: Result | undefined;
+  result = input<Result>();
   @Output() emitLookupReq: EventEmitter<string> = new EventEmitter()
 
 
