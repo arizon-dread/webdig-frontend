@@ -13,6 +13,6 @@ FROM docker.io/regionorebrolan/openshift-nginx:v1.25.3
 ARG version='{"version": "vx.x.x"}'
 ENV VERSION=${version}
 COPY --from=build /app/dist/webdig-frontend /usr/share/nginx/html
-RUN echo $VERSION > /usr/share/nginx/html/version.json
+RUN echo $VERSION > /usr/share/nginx/html/config/version.json
 COPY --from=build /app/nginx/nginx.conf /etc/nginx/
 CMD ["nginx", "-g", "daemon off;"]
