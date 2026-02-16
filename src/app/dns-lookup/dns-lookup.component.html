@@ -12,7 +12,7 @@
         </div>
       <div class="col-md-1"><button type="submit" class="btn btn-primary hide-in-print">Search</button></div>
       <div class="col-md-1 ps-2">
-        @if (searching) {
+        @if (searching()) {
         <div class="spinner-border text-primary" role="status">
           <span class="visually-hidden">Loading...</span>
         </div>

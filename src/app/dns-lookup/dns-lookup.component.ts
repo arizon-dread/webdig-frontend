@@ -28,7 +28,7 @@ export class DnsLookupComponent implements OnInit {
     searchField: ['', Validators.compose([Validators.required, Validators.pattern(this.regex)])],
     cname: new FormControl(false)
   });
-  searching = false;
+  searching = signal(false);
   routeSnapShot: ActivatedRouteSnapshot | undefined;
 
   resp = signal<LookupResponse | undefined>(undefined);
@@ -63,7 +63,7 @@ export class DnsLookupComponent implements OnInit {
     if (this.form.valid) {
       localStorage.setItem("cname", this.form.controls.cname.value?.toString() ?? "false");
       this.resp.set(undefined);
-      this.searching = true;
+      this.searching.set(true);
       let value = this.form.controls['searchField'].value?.trim() ?? "";
       if (value.endsWith(".")) {
         value = value.slice(0, value.length - 1)
@@ -79,12 +79,12 @@ export class DnsLookupComponent implements OnInit {
           if (data) {
             this.resp.set(data);
           }
-          this.searching = false;
+          this.searching.set(false);
         },
         error: (err: Error) => {
           //this.errHandler.displayMsgToUser("Unable to get proper lookup from backend", ToastrType.error);
           console.log(err);
-          this.searching = false;
+          this.searching.set(false);
         }
       });
     } else {
