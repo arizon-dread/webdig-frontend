@@ -1,0 +1,16 @@
+<div class="col-1 cli-logo">
+  <a aria-label="WebDig-commandline tool release page" target="_blank" rel="noopener"
+      href="https://github.com/arizon-dread/webdig-backend/releases" title="WebDig cli on GitHub">
+      <fa-icon id="webdig-cli" title="View WebDig CLI on GitHub" [icon]="faTerminal" alt="terminal logo" src="../assets/terminal-solid.png" class="logo"></fa-icon>
+    </a>
+</div>
+<div class="col-2 version pb-2 nowrap">
+    @if(frontendVersion()) {
+    Frontend version: {{frontendVersion()}}
+    }
+</div>
+<div class="col-2 offset-6 text-secondary nowrap">
+    @if(backendVersion()) {
+    Backend version: {{backendVersion()}}
+    }
+</div>
