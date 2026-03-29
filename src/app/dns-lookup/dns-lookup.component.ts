@@ -28,18 +28,18 @@ export class DnsLookupComponent implements OnInit {
     searchField: ['', Validators.compose([Validators.required, Validators.pattern(this.regex)])],
     cname: new FormControl(false)
   });
-  searching = signal(false);
+  searching = signal<boolean>(false);
   routeSnapShot: ActivatedRouteSnapshot | undefined;
 
   resp = signal<LookupResponse | undefined>(undefined);
   displayValidationError = false;
 
-  constructor(private fb: FormBuilder, 
-              private lookupSvc: LookupService, 
-              private cdr: ChangeDetectorRef,
-              private errHandler: ErrorHandlerService, 
-              private route: ActivatedRoute, 
-              private location: Location) {
+  constructor(private fb: FormBuilder,
+    private lookupSvc: LookupService,
+    private cdr: ChangeDetectorRef,
+    private errHandler: ErrorHandlerService,
+    private route: ActivatedRoute,
+    private location: Location) {
     this.routeSnapShot = route.snapshot;
   }
 
