@@ -1,18 +1,18 @@
 @if(this.result()?.ipAddresses?.length) {
 <div class="row pb-4">
     <hr />
-    <div class="offset-md-2 col-md-3 mt-2">{{result()?.name}} DNS Lookup:</div>
-    <div class="col-md-7">
+    <div class="offset-xl-2 offset-xs-0 col-xl-3 col-xs-6 mt-2">{{result()?.name}} DNS Lookup:</div>
+    <div class="col-xl-7 col-xs-6">
         @for (intIp of result()?.ipAddresses; track intIp) {
         <div class="row pb-2">
             @if(result()?.cnameFor) {
-            <div class="monospace col-md-3 mt-2">{{intIp}}&nbsp;</div>
-            <div class="monospace col-md-4">CNAME for: {{result()?.cnameFor}}</div>
+            <div class="monospace col-xl-3 col-xs-2 mt-2">{{intIp}}&nbsp;</div>
+            <div class="monospace col-xl-4 col-xs-4">CNAME for: {{result()?.cnameFor}}</div>
             } @else {
-            <div class="monospace col-md-5 mt-2">{{intIp}}&nbsp;</div>
+            <div class="monospace col-xl-5 col-xs-2 mt-2">{{intIp}}&nbsp;</div>
             }
 
-            <div class="offset-md-1 col-md-4 non-mono hide-in-print d-flex justify-content-md-end p-1"><button class="btn btn-primary nowrap"
+            <div class="offset-xl-1 offset-xs-0 col-xl-4 col-xs-2 non-mono hide-in-print d-flex justify-content-md-end p-1"><button class="btn btn-primary nowrap"
                     (click)="doReverseLookup(intIp)">Reverse
                     lookup</button></div>
         </div>
