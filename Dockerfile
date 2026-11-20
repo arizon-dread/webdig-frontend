@@ -7,7 +7,7 @@ ARG configuration=production
 RUN npm run ng build -- --configuration $configuration webdig-frontend
 
 #FROM registry.access.redhat.com/ubi8/nginx-120
-FROM docker.io/regionorebrolan/openshift-nginx:v1.29.3
+FROM docker.io/regionorebrolan/openshift-nginx:v1.31.9
 #RUN mkdir -p /opt/app-root/src/ && chgrp -R 0 /opt/app-root/src/ && chmod g=u -R /opt/app-root/src/
 #COPY --from=build /app/dist/ /opt/app-root/src/
 ARG version='{"version": "vx.x.x"}'
